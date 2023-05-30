@@ -15,12 +15,11 @@ public class DressUp extends MyJFrame implements ActionListener {
     private ArrayList<JLabel> tops;
     private ArrayList<JLabel> middle;
     private ArrayList<JLabel> bottom;
-    private     Map<JLabel, String> pictures; 
+    private Map<JLabel, String> pictures; 
     private JLabel title;
     private ArrayList<String> albums, speakNowSongs;
     private ArrayList<Long> speakNowTimes;
     private JButton topleft, topright, middleleft, middleright, bottomleft, bottomright, checkButton, skipButton;
-    private Node<JLabel> topnode;
     private int topindex = 0, middleindex = 0, bottomindex = 0, titleindex = 0, songindex = 0;
     private int points = 0;
     private JLabel pointsLabel, rightWrongLabel, wrongAlbumLabel;
@@ -86,11 +85,11 @@ public class DressUp extends MyJFrame implements ActionListener {
         tops = new ArrayList<JLabel>();
         middle = new ArrayList<JLabel>();
         bottom = new ArrayList<JLabel>();
-        taylorGif = new JLabel(new ImageIcon(new ImageIcon("/Users/nmunjal/Downloads/erascity/endscreentay.gif").getImage().getScaledInstance(434, 243, Image.SCALE_DEFAULT)));
+        taylorGif = new JLabel(new ImageIcon(new ImageIcon("endscreentay.gif").getImage().getScaledInstance(434, 243, Image.SCALE_DEFAULT)));
 
         //creates buttons and puts arrow icons on them
-        ImageIcon left = new ImageIcon(new ImageIcon("/Users/nmunjal/Downloads/erascity/leftarrow.png").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
-        ImageIcon leftsmall = new ImageIcon(new ImageIcon("/Users/nmunjal/Downloads/erascity/leftarrow.png").getImage().getScaledInstance(20, 20, Image.SCALE_DEFAULT));
+        ImageIcon left = new ImageIcon(new ImageIcon("leftarrow.png").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
+        ImageIcon leftsmall = new ImageIcon(new ImageIcon("leftarrow.png").getImage().getScaledInstance(20, 20, Image.SCALE_DEFAULT));
 
         topleft = new JButton(left);
         topleft.setForeground(lightPurple);
@@ -98,8 +97,8 @@ public class DressUp extends MyJFrame implements ActionListener {
         bottomleft = new JButton(left);
         backMusic = new JButton(leftsmall);
 
-        ImageIcon right = new ImageIcon(new ImageIcon("/Users/nmunjal/Downloads/erascity/rightarrow.png").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
-        ImageIcon rightsmall = new ImageIcon(new ImageIcon("/Users/nmunjal/Downloads/erascity/rightarrow.png").getImage().getScaledInstance(20, 20, Image.SCALE_DEFAULT));
+        ImageIcon right = new ImageIcon(new ImageIcon("rightarrow.png").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
+        ImageIcon rightsmall = new ImageIcon(new ImageIcon("rightarrow.png").getImage().getScaledInstance(20, 20, Image.SCALE_DEFAULT));
         topright = new JButton(right);
         middleright = new JButton(right);
         bottomright = new JButton(right);
@@ -570,23 +569,6 @@ public class DressUp extends MyJFrame implements ActionListener {
     public void setMusic(long time) {
         speakNowMusic.setSong(time);
     }
-
-
-    
-   
-
-    
-
-
-
-
-
-
-
-
-
-
-
 
 
     public void add(JButton button) {

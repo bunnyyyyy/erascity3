@@ -54,8 +54,6 @@ public class MyJFrame {
         speakNow.buttonsWork();
         speakNow.playMusic();
 
-
-        
         
     }
 }
