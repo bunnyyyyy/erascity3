@@ -6,6 +6,7 @@ public class MyJFrame {
     private JFrame frame;
     
 
+
     public MyJFrame()
     {
         frame = new JFrame("Eras City"); 
@@ -16,6 +17,8 @@ public class MyJFrame {
         frame.getContentPane().setBackground(lightPurple);
 
     }
+
+
 
     public void setVisible() {
         frame.setVisible(true);
@@ -35,6 +38,10 @@ public class MyJFrame {
         button.setVisible(true);
         frame.getContentPane().add(button);
 
+    }
+
+    public void move(JLabel label, int x, int y) {
+        label.setBounds(x, y, 50, 50);
     }
 
 

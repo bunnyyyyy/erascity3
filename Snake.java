@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class Snake extends JPanel implements KeyListener {
+public class Snake extends JPanel {
 
     private Image taylorImage;
     private List<KanyeHead> kanyeHeads;
@@ -14,10 +14,12 @@ public class Snake extends JPanel implements KeyListener {
     private int taylorX;
     private int taylorY;
     private boolean isGameOver;
+    private Random random;
 
     public Snake() {
         super();
 
+        random = new Random();
         
         
         taylorImage = new ImageIcon("taylor_swift.png").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT);
@@ -34,25 +36,24 @@ public class Snake extends JPanel implements KeyListener {
     public void start() {
         timer = new Timer(3000, e -> {
 
-            //random x coordinate to drop down on
-            Random random = new Random();
-            int kanyeX = random.nextInt(1000-50);
-            kanyeHeads.add(new KanyeHead(kanyeX, 0));
-            repaint();
+            
+            kanyeHeads.add(new KanyeHead(random.nextInt(5)));
+            
         });
 
         timer = new Timer(200, e -> {
             
-            //random x coordinate to drop down on
-            Random random = new Random();
-            int kanyeX = random.nextInt(1000-50);
-            kanyeHeads.add(new KanyeHead(kanyeX, 0));
-            repaint();
+            for (KanyeHead head : kanyeHeads) {
+                head.move();
+            }
         });
     }
 
 
     public static void main(String[] args) {
+        Snake game = new Snake();
+        game.start();
+        
 
     }
 }
