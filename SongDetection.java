@@ -3,7 +3,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Base64;
-import javax.sound.sampled.*;
 
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
@@ -22,7 +21,7 @@ public class SongDetection {
     }
 
     public static void getSong(String fileStr) throws IOException {
-        // String fileStr = convertRaw();
+       
 
         try {
             HttpResponse<String> response = Unirest.post("https://shazam.p.rapidapi.com/songs/v2/detect?timezone=America%2FChicago&locale=en-US")
@@ -47,7 +46,7 @@ public class SongDetection {
     }
 
     public static void main(String[] args) throws IOException {
-        SongDetection test = new SongDetection();
+        //SongDetection test = new SongDetection();
         // test.getSong();
     }
 }

@@ -27,7 +27,7 @@ public class SoundInputGUI extends MyJFrame {
     private byte[] audioData;
     private JButton startButton, stopButton;
     private JLabel recordingLabel;
-    private final int MAX_BYTE_ARRAY_SIZE = 500 * 1024; // Maximum byte array size in bytes (500 KB)
+    private final int MAX_BYTE_ARRAY_SIZE = 500 * 1024;
 
     
     public SoundInputGUI() {
@@ -103,7 +103,7 @@ public class SoundInputGUI extends MyJFrame {
                         // checks if byte array size exceeds the 500kb limit
                         if (totalBytesRead >= MAX_BYTE_ARRAY_SIZE - 5) {
                             stopRecording();
-                            recordingLabel.setText("Recording stopped. Byte array size exceeded the limit.");
+                            recordingLabel.setText("Recording stopped. Max length taken.");
                             audioData = outputStream.toByteArray();
                             try {
                                 SongDetection.getSong(Base64.getEncoder().encodeToString(audioData));

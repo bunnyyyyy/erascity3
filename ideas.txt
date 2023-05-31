@@ -1,9 +1,24 @@
+things to do:
+
+- put taylor pics on 2048 game
+- put song recomendation game from terminal onto gui
+- take music class out of only dress up and have it constantly 
+  playing throughout all games
+- snake maybe :D 
+
+
+
+
+
+
 another game idea:
 chooses a random taylor song and you have 10 seconds to think about what
 youre gonna sing 
 if you sing a taylor song with that word u get a points
 
 
+search to get song
+list reccomoendations to get reccoomendations
 
 
 
