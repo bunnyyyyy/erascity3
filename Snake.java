@@ -6,11 +6,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class Snake extends JPanel {
+public class Snake extends MyJFrame {
 
     private Image taylorImage;
     private List<KanyeHead> kanyeHeads;
-    private Timer timer;
+    private Timer timer, timer1;
     private int taylorX;
     private int taylorY;
     private boolean isGameOver;
@@ -36,24 +36,30 @@ public class Snake extends JPanel {
     public void start() {
         timer = new Timer(3000, e -> {
 
-            
+            System.out.println("ASDHFHSALKLF");
             kanyeHeads.add(new KanyeHead(random.nextInt(5)));
             
         });
+        timer.start();
 
-        timer = new Timer(200, e -> {
+
+        timer1 = new Timer(200, e -> {
             
+            System.out.println("here1");
             for (KanyeHead head : kanyeHeads) {
                 head.move();
             }
         });
+        timer1.start();
     }
 
 
     public static void main(String[] args) {
         Snake game = new Snake();
+        game.setVisible();
         game.start();
-        
+
+
 
     }
 }
