@@ -184,7 +184,7 @@ public class Reccomendations {
 
     public static void main(String[] args) {
         Reccomendations rec = new Reccomendations();
-        rec.parsedID("i was finally clean ");
+        rec.parsedID("the garden gate every night that summere just to seal my fateee");
         if (rec.getArtist() == null) {
             
         }

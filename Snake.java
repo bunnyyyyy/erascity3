@@ -19,8 +19,10 @@ public class Snake extends JPanel implements KeyListener {
         super();
 
         
+        
         taylorImage = new ImageIcon("taylor_swift.png").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT);
        
+        
         taylorX = 500;
         taylorY = 400;
        
