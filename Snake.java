@@ -17,8 +17,8 @@ public class Snake extends MyJFrame {
     private Random random;
 
     public Snake() {
+        
         super();
-
         random = new Random();
         
         
@@ -30,35 +30,43 @@ public class Snake extends MyJFrame {
        
         kanyeHeads = new ArrayList<>();
 
+        //KanyeHead head = new KanyeHead(super.frame(), 1);
+
 
     }
 
     public void start() {
-        timer = new Timer(3000, e -> {
+        timer = new Timer(300, e -> {
 
-            System.out.println("ASDHFHSALKLF");
-            kanyeHeads.add(new KanyeHead(random.nextInt(5)));
+        //    System.out.println("ASDHFHSALKLF");
+          
+
+            SwingUtilities.invokeLater(() -> {
+                KanyeHead kanyeHead = new KanyeHead(super.frame(), random.nextInt(5)); 
+                kanyeHeads.add(kanyeHead);
+                
+    
+                Thread thread = new Thread(kanyeHead);
+                thread.start();
+            });
+            
             
         });
         timer.start();
+        
 
+        
 
-        timer1 = new Timer(200, e -> {
-            
-            System.out.println("here1");
-            for (KanyeHead head : kanyeHeads) {
-                head.move();
-            }
-        });
-        timer1.start();
     }
 
 
     public static void main(String[] args) {
         Snake game = new Snake();
-        game.setVisible();
-        game.start();
+     
+        
 
+        game.start();
+        game.setVisible();
 
 
     }

@@ -15,7 +15,12 @@ public class MyJFrame {
         frame.getContentPane().setLayout(null);
         Color lightPurple = new Color(243, 225, 255);
         frame.getContentPane().setBackground(lightPurple);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+    }
+
+    public JFrame frame() {
+        return frame;
     }
 
 
@@ -44,22 +49,52 @@ public class MyJFrame {
         label.setBounds(x, y, 50, 50);
     }
 
+   
+
 
 
     
 
     public static void main(String[] args) {
 
+       
+
+        
+        // SwingUtilities.invokeLater(() -> {
+        //     KanyeHead kanyeHead = new KanyeHead(1); 
+        
+        //     kanyeHead.setVisible();
+
+        //     Thread thread = new Thread(kanyeHead);
+        //     thread.start();
+        // });
+    
+    //    KanyeHead head = new KanyeHead(1);
+    //    head.run();
+
+    //    head.setVisible();
+
+
+
+     
+
+        
+
+
+    
+
         // String filepath = "/Users/nmunjal/Downloads/erascity/snowmusic.wav";
 
         // Music musicObject = new Music();
         // musicObject.playMusic(filepath);
        
-        DressUp speakNow = new DressUp();
-        speakNow.displayInitial();
-        speakNow.setVisible();
-        speakNow.buttonsWork();
-        speakNow.playMusic();
+        // DressUp speakNow = new DressUp();
+        
+        // speakNow.displayInitial();
+        // speakNow.setVisible();
+        
+        // speakNow.buttonsWork();
+        // speakNow.playMusic();
 
         
     }
