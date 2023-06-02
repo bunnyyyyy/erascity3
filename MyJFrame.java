@@ -17,7 +17,7 @@ public class MyJFrame {
         frame.getContentPane().setLayout(null);
         Color lightPurple = new Color(243, 225, 255);
         frame.getContentPane().setBackground(lightPurple);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        //frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 
         frame.addWindowListener(new WindowAdapter() {

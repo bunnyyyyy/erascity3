@@ -79,7 +79,7 @@ public class Reccomendations extends MyJFrame {
                 removeBottomElements();
                 artist = null;
 
-                String userInput = JOptionPane.showInputDialog(Reccomendations.this, "Enter lyrics:");
+                String userInput = JOptionPane.showInputDialog("What song are you thinking of?", "Enter lyrics:");
                 lyricsTextField.setText(userInput);
                 stringInput = lyricsTextField.getText(); 
                 displayRecs();

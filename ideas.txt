@@ -1,5 +1,13 @@
 things to do:
 
+- pause music when snake game starts and play when ends
+- draw class diagram
+
+
+
+
+
+
 - put taylor pics on 2048 game
 - put song recomendation game from terminal onto gui
 - take music class out of only dress up and have it constantly 

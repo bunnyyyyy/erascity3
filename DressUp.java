@@ -3,6 +3,7 @@ import javax.swing.border.BevelBorder;
 import javax.swing.border.Border;
 
 import java.util.*;
+import java.util.Timer;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
@@ -30,6 +31,7 @@ public class DressUp extends MyJFrame implements ActionListener {
     private JLabel changeOfMusicLabel, currentSong;
     private JButton backMusic, forwardMusic;
     private JFrame frame;
+    private Timer timer;
 
 
     /**
@@ -480,6 +482,8 @@ public class DressUp extends MyJFrame implements ActionListener {
         super.add(donePointsLabel, 20, 200, 730, 100);
         super.add(doneCustomLabel, 20, 300, 730, 100);
         super.add(taylorGif, 60, 390, 651, 364);
+
+       
     }
 
     //removes left/right buttons if you cannot go more left or right anymore
