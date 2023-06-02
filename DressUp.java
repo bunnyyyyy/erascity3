@@ -29,6 +29,7 @@ public class DressUp extends MyJFrame implements ActionListener {
     private JLabel taylorGif;
     private JLabel changeOfMusicLabel, currentSong;
     private JButton backMusic, forwardMusic;
+    private JFrame frame;
 
 
     /**
@@ -37,6 +38,7 @@ public class DressUp extends MyJFrame implements ActionListener {
     public DressUp() {
         //create the frame
         super();
+        frame = super.frame();
 
         //initializes albums to all the names of albums and songs of speak now in order
         albums = new ArrayList<>(Arrays.asList("Debut", "Fearless", "Speak Now", "Red", 
@@ -160,6 +162,16 @@ public class DressUp extends MyJFrame implements ActionListener {
         Collections.shuffle(tops);
         Collections.shuffle(middle);
         Collections.shuffle(bottom);
+
+
+        frame.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+               
+                frame.setVisible(false);
+                frame.dispose();
+            }
+        });
     }
 
 

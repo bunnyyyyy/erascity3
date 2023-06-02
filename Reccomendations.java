@@ -39,12 +39,14 @@ public class Reccomendations extends MyJFrame {
     private JButton enterLyricsButton;
     private JLabel songNameLabel, titleLabel, recLabel, rec1, rec2, rec3, rec4, rec5;
     private JTextField lyricsTextField;
+    private JFrame frame;
     
 
 
 
     public Reccomendations() {
         super();
+        frame = super.frame();
         enterLyricsButton = new JButton("Enter Lyrics");
         songNameLabel = new JLabel("song name:", SwingConstants.CENTER);
         titleLabel = new JLabel("Shake it Off", SwingConstants.CENTER);
@@ -82,6 +84,16 @@ public class Reccomendations extends MyJFrame {
                 stringInput = lyricsTextField.getText(); 
                 displayRecs();
             }
+        });
+
+
+        frame.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                frame.setVisible(false);
+                frame.dispose();
+            }
+
         });
 
         

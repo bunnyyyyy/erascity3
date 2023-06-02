@@ -100,7 +100,7 @@ public class SoundInputGUI extends MyJFrame {
                         outputStream.write(buffer, 0, bytesRead);
                         totalBytesRead += bytesRead;
 
-                        // checks if byte array size exceeds the 500kb limit
+                        // checks if byte array size exceeds the limit????!!
                         if (totalBytesRead >= MAX_BYTE_ARRAY_SIZE - 5) {
                             stopRecording();
                             recordingLabel.setText("Recording stopped. Max length taken.");

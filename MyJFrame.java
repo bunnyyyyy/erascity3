@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class MyJFrame {
 
@@ -17,6 +19,14 @@ public class MyJFrame {
         frame.getContentPane().setBackground(lightPurple);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+
+        frame.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                frame.dispose();
+            }
+
+        });
     }
 
     public JFrame frame() {
@@ -48,6 +58,8 @@ public class MyJFrame {
     public void move(JLabel label, int x, int y) {
         label.setBounds(x, y, 50, 50);
     }
+
+    
 
    
 

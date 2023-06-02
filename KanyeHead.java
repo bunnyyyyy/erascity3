@@ -136,6 +136,10 @@ public class KanyeHead extends MyJFrame implements Runnable {
 
     }
 
+    public void remove(JLabel label) {
+        frame.getContentPane().remove(label);
+    }
+
 
     public boolean isOutOfBounds() {
         return outOfBounds;
