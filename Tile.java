@@ -1,36 +1,64 @@
 import java.awt.Color;
 
+/**
+ * tile class for 2048
+ * creates the small seperate tiles in the grid
+ * @author Sara Pandit
+ * @version June 2, 2023
+ * @author Period: 5
+ */
 public class Tile {
-    int value;
+    int val;
 
     Color tileColor;
 
+    /**
+     * constructor
+     */
     public Tile()
     {
-        value = 0;
+        val = 0;
     }
 
-
+    /**
+     * tile with value number
+     * @param number value
+     */
     public Tile( int number )
     {
-        value = number;
+        val = number;
     }
 
+    /**
+     * gets the value
+     * @return value
+     */
     public int getValue()
     {
-        return value;
+        return val;
     }
 
+    /**
+     * sets the value 
+     * @param value value
+     */
     public void setValue( int value )
     {
-        this.value = value;
+        this.val = value;
     }
 
+    /**
+     * string
+     * @return string + the value
+     */
     public String toString()
     {
-        return "" + value;
+        return "" + val;
     }
 
+    /**
+     * sets the colors for each tile
+     */
     public void setColor()
     {
         if ( this.getValue() == 2 )
@@ -79,6 +107,10 @@ public class Tile {
         }
     }
 
+    /**
+     * gets the colors
+     * @return the 11 tile colors
+     */
     public Color getColor()
     {
         this.setColor();

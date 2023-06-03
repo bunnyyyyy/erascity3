@@ -6,6 +6,12 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.SwingUtilities;
 
+/**
+ * Creates the moving KanyeHeads.
+ * @author Sanya Badhe
+ * @version 6/2/23
+ * 
+ */
 public class KanyeHead extends MyJFrame implements Runnable {
     private int x;
     private int y;

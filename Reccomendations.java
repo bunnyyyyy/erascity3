@@ -11,12 +11,14 @@ import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
 
-import src.ApiKey;
-
 import java.net.URLEncoder;
 import java.io.UnsupportedEncodingException;
 
-
+/**
+ * @author Sanya Badhe
+ * @version 6/2/23
+ * Inputs taylor song lyrics and offers reccomendations according to the song.
+ */
 public class Reccomendations extends MyJFrame {
     
     private static final String API_KEY = ApiKey.APIKEY();
@@ -69,7 +71,7 @@ public class Reccomendations extends MyJFrame {
                 removeBottomElements();
                 artist = null;
 
-                String userInput = JOptionPane.showInputDialog("What song are you thinking of?", "Enter lyrics:");
+                String userInput = JOptionPane.showInputDialog("What taylor song are you thinking of?", "Enter lyrics:");
                 lyricsTextField.setText(userInput);
                 stringInput = lyricsTextField.getText(); 
                 displayRecs();

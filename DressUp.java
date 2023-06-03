@@ -8,6 +8,13 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
 
+/**
+ * 
+ * Creates the matching outfits game.
+ * @author Sanya Badhe
+ * @version 6/2/23
+ * 
+ */
 public class DressUp extends MyJFrame {
     private static int size = 10;
     private static Color cyan = new Color(0, 139, 139);
@@ -453,7 +460,7 @@ public class DressUp extends MyJFrame {
        
     }
 
-    /*
+    /**
      * Removes left/right buttons if you cannot go more left or right anymore.
      */
     public void checkButtons() {

@@ -1,10 +1,21 @@
+/**
+ * 2048 game
+ * methods for score, highest tile (2048) and end method
+ * methods for the ways to move (up down left right)
+ * @author Sara Pandit
+ * @version June 2, 2023
+ * @author Assignment: Final Project
+ */
 public class Board {
     
     public Tile[][] board;
-    int grids = 4;
+    int g = 4;
     int border = 0;
     public int score = 0;
 
+    /**
+     * default constructor, sets the dimensions for the grid
+     */
     public Board()
     {
         board = new Tile[4][4];
@@ -17,46 +28,28 @@ public class Board {
         }
     }
 
-
-    public Board( int grids )
-    {
-        this.grids = grids;
-        board = new Tile[grids][grids];
-        for ( int i = 0; i < board.length; i++ )
-        {
-            for ( int j = 0; j < board[i].length; j++ )
-            {
-                board[i][j] = new Tile();
-            }
-        }
-    }
-
-
-    public Board( int lose, int grids )
-    {
-        this.grids = grids;
-        board = new Tile[grids][grids];
-        for ( int i = 0; i < board.length; i++ )
-        {
-            for ( int j = 0; j < board[i].length; j++ )
-            {
-                board[i][j] = new Tile( ( lose + i + j ) * ( i + j ) );
-            }
-        }
-    }
-
+    /**
+     * getter method for board
+     * @return board
+     */
     public Tile[][] getBoard()
     {
         return board;
     }
 
-
+    /**
+     * getter method for score
+     * @return score
+     */
     public int getScore()
     {
         return score;
     }
 
-
+    /**
+     * gets the highest tile (only goes to 2048)
+     * @return high
+     */
     public int getHighTile()
     {
         int high = board[0][0].getValue();
@@ -73,37 +66,9 @@ public class Board {
         return high;
     }
 
-
-    public void print()
-    {
-        for ( int i = 0; i < board.length; i++ )
-        {
-            for ( int j = 0; j < board[i].length; j++ )
-            {
-                String s = board[i][j].toString() + " ";
-                System.out.print( s );
-            }
-            System.out.println( "" );
-        }
-        System.out.println( "Score: " + score );
-    }
-
-
-    public String toString()
-    {
-        String s = "";
-        for ( int i = 0; i < board.length; i++ )
-        {
-            for ( int j = 0; j < board[i].length; j++ )
-            {
-                s += board[i][j].toString() + " ";
-            }
-            s += "\n";
-        }
-        return s;
-    }
-
-
+    /**
+     * spawns a 2 tile every time a user moves another tile
+     */
     public void spawn()
     {
         boolean empty = true;
@@ -127,11 +92,13 @@ public class Board {
             }
 
         }
-
     }
 
-
-    public boolean blackOut()
+    /**
+     * if the board is completely full, tells the player to restart
+     * @return true or false
+     */
+    public boolean allFull()
     {
         int count = 0;
         for ( int i = 0; i < board.length; i++ )
@@ -151,7 +118,12 @@ public class Board {
         return false;
     }
 
-
+    /**
+     * if any tile cannot combine with another next to it,
+     * and the grid is empty
+     * the game is over
+     * @return true or false
+     */
     public boolean gameOver()
     {
         int count = 0;
@@ -249,13 +221,15 @@ public class Board {
         return false;
     }
 
-
+    /**
+     * method for w (up)
+     */
     public void up()
     {
-        for ( int i = 0; i < grids; i++ )
+        for ( int i = 0; i < g; i++ )
         {
             border = 0;
-            for ( int j = 0; j < grids; j++ )
+            for ( int j = 0; j < g; j++ )
             {
                 if ( board[j][i].getValue() != 0 )
                 {
@@ -268,13 +242,15 @@ public class Board {
         }
     }
 
-
+    /**
+     * method for s (down)
+     */
     public void down()
     {
-        for ( int i = 0; i < grids; i++ )
+        for ( int i = 0; i < g; i++ )
         {
-            border = ( grids - 1 );
-            for ( int j = grids - 1; j >= 0; j-- )
+            border = ( g - 1 );
+            for ( int j = g - 1; j >= 0; j-- )
             {
                 if ( board[j][i].getValue() != 0 )
                 {
@@ -287,7 +263,13 @@ public class Board {
         }
     }
 
-
+    /**
+     * compared tile values and adds them if they are the same
+     * for vertically moving
+     * @param row row the tile is on
+     * @param col column the tile is in
+     * @param direction direction the tile is moving
+     */
     private void verticalMove( int row, int col, String direction )
     {
         Tile initial = board[border][col];
@@ -319,13 +301,15 @@ public class Board {
         }
     }
 
-
+    /**
+     * method for a (left)
+     */
     public void left()
     {
-        for ( int i = 0; i < grids; i++ )
+        for ( int i = 0; i < g; i++ )
         {
             border = 0;
-            for ( int j = 0; j < grids; j++ )
+            for ( int j = 0; j < g; j++ )
             {
                 if ( board[i][j].getValue() != 0 )
                 {
@@ -338,13 +322,15 @@ public class Board {
         }
     }
 
-
+    /**
+     * method for d (right)
+     */
     public void right()
     {
-        for ( int i = 0; i < grids; i++ )
+        for ( int i = 0; i < g; i++ )
         {
-            border = ( grids - 1 );
-            for ( int j = ( grids - 1 ); j >= 0; j-- )
+            border = ( g - 1 );
+            for ( int j = ( g - 1 ); j >= 0; j-- )
             {
                 if ( board[i][j].getValue() != 0 )
                 {
@@ -357,7 +343,13 @@ public class Board {
         }
     }
 
-
+     /**
+     * compared tile values and adds them if they are the same
+     * for horizontally moving
+     * @param row row the tile is on
+     * @param col column the tile is in
+     * @param direction direction the tile is moving
+     */
     private void horizontalMove( int row, int col, String direction )
     {
         Tile initial = board[row][border];

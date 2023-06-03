@@ -6,7 +6,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-
+/**
+ * Creates the game where you control Taylor and try to dodge Kanyes.
+ * @author Sanya Badhe
+ * @version 6/2/23
+ * 
+ */
 public class Snake extends MyJFrame implements KeyListener  {
 
     private JLabel taylorImage, gameOverLabel, timeLabel;
@@ -218,23 +223,6 @@ public class Snake extends MyJFrame implements KeyListener  {
         //throw new UnsupportedOperationException("Unimplemented method 'keyReleased'");
     }
 
-
-    
-
-
-
-
-    public static void main(String[] args) {
-        Snake game = new Snake();
-     
-
-        game.start();
-        game.startCollisonTesting();
-       
-        game.setVisible();
-
-
-    }
 
     
 }

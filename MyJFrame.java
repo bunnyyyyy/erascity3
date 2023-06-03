@@ -3,6 +3,12 @@ import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
+/**
+ * Creates a JFrame and allows for adding items onto it.
+ * @author Sanya Badhe
+ * @version 6/2/23
+ *
+ */
 public class MyJFrame {
 
     private JFrame frame;

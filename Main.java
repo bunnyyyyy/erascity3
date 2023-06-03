@@ -5,6 +5,12 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
+/**
+ * Combines all the games and runs each one + music.
+ * @author Sanya Badhe
+ * @version 6/2/23
+ * 
+ */
 public class Main {
   
     private static boolean paused = false;

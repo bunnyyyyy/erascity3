@@ -6,6 +6,12 @@ import java.util.*;
 import java.awt.*;
 import java.awt.event.*;
 
+/**
+ * Starts the Music and adds all the music related labels.
+ * @author Sanya Badhe
+ * @version 6/2/23
+ * 
+ */
 public class PlayMusic {
 
     
@@ -21,6 +27,7 @@ public class PlayMusic {
     /**
      * Initializes the speak now song names along with their timestamps in snowmusic.wav. 
      * Initializes song related labels and buttons. 
+     * @param frame the JFrame to add labels to
      */
     public PlayMusic(JFrame frame) {
         //create the frame

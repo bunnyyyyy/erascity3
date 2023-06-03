@@ -4,6 +4,12 @@ import javax.sound.sampled.Clip;
 import javax.sound.sampled.FloatControl;
 import java.io.File;
 
+/**
+ * Creates the AudioStream and allows for controls like play/pause.
+ * @author Sanya Badhe
+ * @version 6/2/23
+ * 
+ */
 public class Music {
 
     private File musicPath;
