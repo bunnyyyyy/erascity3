@@ -1,24 +1,8 @@
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.Base64;
-import javax.sound.sampled.*;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.*;
-import javax.swing.border.BevelBorder;
-import javax.swing.border.Border;
-
-import java.util.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.io.*;
-
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -26,6 +10,9 @@ import org.json.JSONObject;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
+
+import src.ApiKey;
+
 import java.net.URLEncoder;
 import java.io.UnsupportedEncodingException;
 
@@ -39,14 +26,17 @@ public class Reccomendations extends MyJFrame {
     private JButton enterLyricsButton;
     private JLabel songNameLabel, titleLabel, recLabel, rec1, rec2, rec3, rec4, rec5;
     private JTextField lyricsTextField;
-    private JFrame frame;
     
 
 
 
+    /**
+     * Initializes and sets temporary text/fonts to all the labels/buttons.
+     * Also adds functionality to the 'enter lyrics' button.
+     */
     public Reccomendations() {
         super();
-        frame = super.frame();
+        
         enterLyricsButton = new JButton("Enter Lyrics");
         songNameLabel = new JLabel("song name:", SwingConstants.CENTER);
         titleLabel = new JLabel("Shake it Off", SwingConstants.CENTER);
@@ -87,14 +77,7 @@ public class Reccomendations extends MyJFrame {
         });
 
 
-        frame.addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent e) {
-                frame.setVisible(false);
-                frame.dispose();
-            }
-
-        });
+        
 
         
 
@@ -102,8 +85,12 @@ public class Reccomendations extends MyJFrame {
 
     }
 
-    //gets the song (search endpoint)
+    
 
+    /**
+     * Adds all the labels and buttons onto the frame and sets the labels to
+     * not currently be visible.
+     */
     public void displayInitial() {
         super.add(enterLyricsButton, 400, 40, 200, 50);
         super.add(songNameLabel, 10, 100, 980, 75);
@@ -118,6 +105,11 @@ public class Reccomendations extends MyJFrame {
 
     }
 
+    /**
+     * Checks if the song inputted is by Taylor- if so displays recommendations, if not says that song is not by Taylor.
+     * If no song is able to be detected, it says no song detected.
+     * 
+     */
     public void displayRecs() {
         parsedID(stringInput);
         if (getArtist() == null) {
@@ -161,6 +153,12 @@ public class Reccomendations extends MyJFrame {
     }
 
 
+    /**
+     * Gets the song ID from the the user input and
+     * gets the songID, title, and artist from the API.
+     * 
+     * @param rawInput user input
+     */
     public void parsedID(String rawInput) {
 
 
@@ -194,15 +192,6 @@ public class Reccomendations extends MyJFrame {
                             artist = trackObject.getString("subtitle");
                             
                         }
-
-                        if (artist.equals("Taylor Swift")) {
-                            System.out.println("Key: " + songID);
-                            System.out.println("Title: " + title);
-                            System.out.println("Artist: " + artist);
-                        }
-                        else {
-                           System.out.println(title + " IS NOT BY TAYLOR >:(" );
-                        }
                         return;
                     }
                 }
@@ -217,6 +206,11 @@ public class Reccomendations extends MyJFrame {
         
     }
         
+    /**
+     * Gets the song name and info about the song from the Shazam API.
+     * @param rawInput user input
+     * @return The body of json response containing song info.
+     */
     public String getSongInfo(String rawInput) {
     
         try {
@@ -241,6 +235,11 @@ public class Reccomendations extends MyJFrame {
         return "failed";
     }
 
+    /**
+     * Converts the user input into a url format
+     * @param rawInput user input
+     * @return user input in requested format of API
+     */
     public String convertToURL(String rawInput) {
        
         String encodedInput = "";
@@ -258,6 +257,12 @@ public class Reccomendations extends MyJFrame {
     }
 
 
+    /**
+     * Gets and displays song recs from the API.
+     * 
+     * @return true if recommendations can be found
+     * false if otherwise
+     */
     public boolean getReccomendations() {
         boolean works = false;
         try {
@@ -339,11 +344,18 @@ public class Reccomendations extends MyJFrame {
 
 
 
+    /**
+     * Returns the artist of the song.
+     * @return the artist
+     */
     public String getArtist() {
         return artist;
     }
 
 
+    /**
+     * Sets all the labels to be invisible.
+     */
     public void removeBottomElements() {
         songNameLabel.setVisible(false);
         titleLabel.setVisible(false);
@@ -356,15 +368,8 @@ public class Reccomendations extends MyJFrame {
     }
 
 
-    //gets the reccomendations (list-recommendations endpoint)
 
-    public static void main(String[] args) {
-        Reccomendations rec = new Reccomendations();
-       
-        rec.displayInitial();
-        rec.setVisible();
-        
-    }
+    
 
 
 }

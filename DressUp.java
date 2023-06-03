@@ -8,49 +8,44 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
 
-public class DressUp extends MyJFrame implements ActionListener {
-    public static int size = 10;
-    public static Color cyan = new Color(0, 139, 139);
-    public static Color lightPurple = new Color(243, 225, 255);
-    public static long m = 1000000;
+public class DressUp extends MyJFrame {
+    private static int size = 10;
+    private static Color cyan = new Color(0, 139, 139);
+    private static Color lightPurple = new Color(243, 225, 255);
     private ArrayList<JLabel> tops;
     private ArrayList<JLabel> middle;
     private ArrayList<JLabel> bottom;
+    private ArrayList<String> albums;
     private Map<JLabel, String> pictures; 
     private JLabel title;
-    private ArrayList<String> albums, speakNowSongs;
-    private ArrayList<Long> speakNowTimes;
     private JButton topleft, topright, middleleft, middleright, bottomleft, bottomright, checkButton, skipButton;
-    private int topindex = 0, middleindex = 0, bottomindex = 0, titleindex = 0, songindex = 0;
+    private int topindex = 0, middleindex = 0, bottomindex = 0, titleindex = 0;
     private int points = 0;
     private JLabel pointsLabel, rightWrongLabel, wrongAlbumLabel;
     private JLabel thisIsLabel;
     private boolean firstTry = true;
     private JLabel doneLabel, donePointsLabel, doneCustomLabel; 
     private JLabel taylorGif;
-    private JLabel changeOfMusicLabel, currentSong;
-    private JButton backMusic, forwardMusic;
-    private JFrame frame;
-    private Timer timer;
 
 
     /**
-     * Initializes three linked lists of JLabels with top, middle, and bottom pictures of Taylor Swift outfits. 
+     * Calls super() to create a JFrame.
+     * Initializes albums to all the names of albums and songs of speak now in order.
+     * Initializes all the pictures and the buttons.
+     * Sets the fonts of all the labels.
+     * Sets the colors of all the labels.
+     * Creates buttons and puts arrow icons on them
+     * Initializes hash map to store all images and keys + array lists.
+     * Randomizes the picture order.
      */
     public DressUp() {
         //create the frame
         super();
-        frame = super.frame();
 
-        //initializes albums to all the names of albums and songs of speak now in order
+        //initializes albums to all the names of albums
         albums = new ArrayList<>(Arrays.asList("Debut", "Fearless", "Speak Now", "Red", 
         "1989", "Reputation", "Lover", "Folklore", "Evermore", "Midnights"));
         Collections.shuffle(albums);
-        speakNowSongs = new ArrayList<>(Arrays.asList("Mine", "Sparks Fly", "Back To December", "Speak Now",
-        "Dear John", "Mean", "The Story of Us", "Never Grow Up", "Enchanted", "Better Than Revenge", "Innocent",
-        "Haunted", "Last Kiss", "Long Live"));
-        speakNowTimes =  new ArrayList<>(Arrays.asList(0L, 230L*m, 491L*m, 785L*m, 1019L*m, 1415L*m, 1651L*m, 1916L*m, 
-        2211L*m, 2562L*m, 2779L*m, 3074L*m, 3317L*m, 3682L*m));
         
         //initializes all the pictures and the buttons
         title = new JLabel(albums.get(0), SwingConstants.CENTER);
@@ -61,8 +56,6 @@ public class DressUp extends MyJFrame implements ActionListener {
         doneLabel = new JLabel("DONE!!", SwingConstants.CENTER);
         donePointsLabel = new JLabel("You scored ", SwingConstants.CENTER);
         doneCustomLabel = new JLabel("custom message", SwingConstants.CENTER);
-        changeOfMusicLabel = new JLabel("Currently Playing", SwingConstants.CENTER);
-        currentSong = new JLabel(speakNowSongs.get(0), SwingConstants.CENTER);
 
         //sets the font of all the labels
         title.setFont(new Font("Arial", Font.BOLD, 65));
@@ -73,8 +66,6 @@ public class DressUp extends MyJFrame implements ActionListener {
         doneLabel.setFont(new Font("Arial", Font.BOLD, 51));
         donePointsLabel.setFont(new Font("Arial", Font.BOLD, 51));
         doneCustomLabel.setFont(new Font("Arial", Font.BOLD, 51));
-        changeOfMusicLabel.setFont(new Font("Arial", Font.BOLD, 25));
-        currentSong.setFont(new Font("Arial", Font.BOLD, 25));
         
         //sets the colors of labels
         thisIsLabel.setForeground(Color.RED);
@@ -89,24 +80,20 @@ public class DressUp extends MyJFrame implements ActionListener {
         tops = new ArrayList<JLabel>();
         middle = new ArrayList<JLabel>();
         bottom = new ArrayList<JLabel>();
-        taylorGif = new JLabel(new ImageIcon(new ImageIcon("endscreentay.gif").getImage().getScaledInstance(434, 243, Image.SCALE_DEFAULT)));
+        taylorGif = new JLabel(new ImageIcon(new ImageIcon("pictures/endscreentay.gif").getImage().getScaledInstance(434, 243, Image.SCALE_DEFAULT)));
 
         //creates buttons and puts arrow icons on them
-        ImageIcon left = new ImageIcon(new ImageIcon("leftarrow.png").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
-        ImageIcon leftsmall = new ImageIcon(new ImageIcon("leftarrow.png").getImage().getScaledInstance(20, 20, Image.SCALE_DEFAULT));
+        ImageIcon left = new ImageIcon(new ImageIcon("pictures/leftarrow.png").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
 
         topleft = new JButton(left);
         topleft.setForeground(lightPurple);
         middleleft = new JButton(left);
         bottomleft = new JButton(left);
-        backMusic = new JButton(leftsmall);
 
-        ImageIcon right = new ImageIcon(new ImageIcon("rightarrow.png").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
-        ImageIcon rightsmall = new ImageIcon(new ImageIcon("rightarrow.png").getImage().getScaledInstance(20, 20, Image.SCALE_DEFAULT));
+        ImageIcon right = new ImageIcon(new ImageIcon("pictures/rightarrow.png").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
         topright = new JButton(right);
         middleright = new JButton(right);
         bottomright = new JButton(right);
-        forwardMusic = new JButton(rightsmall);
 
        
 
@@ -122,9 +109,9 @@ public class DressUp extends MyJFrame implements ActionListener {
         
         // converts all pictures to labels and puts the labels in top, middle, bottom linked lists 
         // additionally also puts labels into pictures hash map with respective keys
-        File topfiles = new File("tops");
-        File middlefiles = new File("middle");
-        File bottomfiles = new File("bottom");
+        File topfiles = new File("pictures/tops");
+        File middlefiles = new File("pictures/middle");
+        File bottomfiles = new File("pictures/bottom");
 
         File[] listoftops = topfiles.listFiles();
         File[] listofmiddles = middlefiles.listFiles();
@@ -166,19 +153,13 @@ public class DressUp extends MyJFrame implements ActionListener {
         Collections.shuffle(bottom);
 
 
-        frame.addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent e) {
-               
-                frame.setVisible(false);
-                frame.dispose();
-            }
-        });
     }
 
 
 
-    //displays the first pictures + buttons
+    /**
+     * Displays all the labels + buttons on the frame in their initial positions.
+     */
     public void displayInitial() {
         super.add(title, 325, 50, 350, 100);
         super.add(pointsLabel, 760, 50, 190, 100);
@@ -197,6 +178,7 @@ public class DressUp extends MyJFrame implements ActionListener {
         thisIsLabel.setVisible(false);
         wrongAlbumLabel.setVisible(false);
 
+        //sets the border of buttons
         Border border = BorderFactory.createBevelBorder(BevelBorder.RAISED);
         topleft.setBorder(border);
         middleleft.setBorder(border);
@@ -204,14 +186,8 @@ public class DressUp extends MyJFrame implements ActionListener {
         topright.setBorder(border);
         middleright.setBorder(border);
         bottomright.setBorder(border);
-        backMusic.setBorder(border);
-        forwardMusic.setBorder(border);
         
-        //adds music related things
-        super.add(changeOfMusicLabel, 675, 660, 300, 100);
-        super.add(currentSong, 675, 700, 300, 100);
-        super.add(backMusic, 665, 738, 20, 20);
-        super.add(forwardMusic, 965, 738, 20, 20);
+    
         
         
 
@@ -228,13 +204,15 @@ public class DressUp extends MyJFrame implements ActionListener {
         super.add(skipButton, 180, 70, 100, 50);
         checkPictureIndex();
         checkButtons();
-        checkMusicButtons();
+
 
         
 
     }
 
-    //moves to new album 
+   /**
+    * Resets the check/skip button and changes the current title to the next album.
+    */
     public void newTitle() {
         firstTry = true;
         titleindex += 1;
@@ -244,7 +222,12 @@ public class DressUp extends MyJFrame implements ActionListener {
 
 
 
-    //adds functionality to buttons
+    /**
+     * Adds functionality to all the buttons, so when top left is pushed the top pictures move one picture to the left, and same for 
+     * top right, middleleft, middleright, bottomleft, bottomright.
+     * 
+     * Also adds functionality to check/skip buttons
+     */
     public void buttonsWork() {
         topleft.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -413,26 +396,6 @@ public class DressUp extends MyJFrame implements ActionListener {
 
 
 
-        //music buttons!!!!!!!!!!!
-        backMusic.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                songindex -= 1;
-                currentSong.setText(speakNowSongs.get(songindex));
-                long time = speakNowTimes.get(songindex);
-                setMusic(time);    
-                checkMusicButtons();
-            }
-         });
-         forwardMusic.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                songindex += 1;
-                currentSong.setText(speakNowSongs.get(songindex));
-                long time = speakNowTimes.get(songindex);
-                setMusic(time);    
-                checkMusicButtons();
-            }
-         });
-
          
 
 
@@ -440,6 +403,10 @@ public class DressUp extends MyJFrame implements ActionListener {
     }
 
 
+    /**
+     * Displays the done screen which removes all previous elements and replaces it with a 
+     * taylor gif and a customized messages depending on the score.
+     */
     public void doneScreen() {
         
         //removes all previous buttons, keeps music
@@ -486,7 +453,9 @@ public class DressUp extends MyJFrame implements ActionListener {
        
     }
 
-    //removes left/right buttons if you cannot go more left or right anymore
+    /*
+     * Removes left/right buttons if you cannot go more left or right anymore.
+     */
     public void checkButtons() {
         if(topindex == 0) {
             remove(topleft);
@@ -534,6 +503,10 @@ public class DressUp extends MyJFrame implements ActionListener {
 
     }
 
+    /**
+     * From time to time, the buttons will be pressed too fast and no pictures will show up. This method checks if this 
+     * has happened, and readjusts the picture's indexes to either the first/last picture.
+     */
     public void checkPictureIndex() {
         if (topindex < 0) {
             topindex = 0;
@@ -558,57 +531,60 @@ public class DressUp extends MyJFrame implements ActionListener {
        
     }
 
-    public void checkMusicButtons() {
-        if(songindex == 0) {
-            remove(backMusic);
-        }
-        else {
-            add(backMusic);
-        }
-        if(songindex == 13) {
-            remove(forwardMusic);
-        }
-        else {
-            add(forwardMusic);
-        }
-    }
-
-
-
-    //below is everything music related
-    Music speakNowMusic = new Music("snowmusic.wav");
-
-    public void playMusic() {
-        speakNowMusic.playMusic();
-    }
-
-    public void setMusic(long time) {
-        speakNowMusic.setSong(time);
-    }
-
-
+    
+    /**
+     * Sets a button to be invisible.
+     * @param button button to be set invisible
+     */
     public void add(JButton button) {
         button.setVisible(true);
     }
 
+    /**
+     * Sets a label to be invisible.
+     * @param label label to be set invisible
+     */
     public void add(JLabel label) {
         label.setVisible(true);
     }
     
-    
+    /**
+     * Sets a label to be visible.
+     * @param label label to be set visible
+     */
     public void remove(JLabel label) {
         label.setVisible(false);
     }
     
+    /**
+     * Sets a button to be visible.
+     * @param button button to be set visible
+     */
     public void remove(JButton button) {
         button.setVisible(false);
     }
 
+    
+    /**
+     * Adds a label to the frame.
+     * 
+     * @param label label to be added
+     * @param x x-coordinate
+     * @param y y-coordinatee
+     * @param width width of label
+     * @param height height of label
+     */
     public void add(JLabel label, int x, int y, int width, int height) {
         super.add(label, x, y, width, height);
 
     }
 
+    /**
+     * Parses a picture's filepath to get the album name of the picture
+     * 
+     * @param filePath filepath of picture
+     * @return album name that the picture belongs to
+     */
     public String getKey(String filePath) {
         int lastSlashIndex = filePath.lastIndexOf('/');
         int dotIndex = filePath.lastIndexOf('.');
@@ -621,10 +597,7 @@ public class DressUp extends MyJFrame implements ActionListener {
 
 
     
-    public void actionPerformed(ActionEvent e) {
-        throw new UnsupportedOperationException("Unimplemented method 'actionPerformed'");
-    }
-
+   
 
 }
 

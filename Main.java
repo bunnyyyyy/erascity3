@@ -1,20 +1,22 @@
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.util.ArrayList;
-import java.util.Arrays;
-
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
 public class Main {
-
+  
+    private static boolean paused = false;
+  
     
     
+    /**
+     * Main method which adds buttons for each of the 4 mini games. Each button 
+     * declares an instance of its respctive game and starts the games.
+     * Also plays music in the main frame. 
+     * @param args allows for the use of command-line argumnts
+     */
     public static void main(String[] args) { 
 
         MyJFrame frame = new MyJFrame();
@@ -41,10 +43,23 @@ public class Main {
         frame.add(dressUpButton, 50, 400, 400, 150);
         frame.add(recButton, 450, 400, 400, 150);
 
+        PlayMusic music = new PlayMusic(frame.frame());
+        music.displayInitial();
+        music.buttonsWork();
+        music.playMusic();
+
+        
+        
+
         x2048Button.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-               Game game = new Game();
-               game.setUpGUI();
+                Game game = new Game();
+                game.setUpGUI();
+               if (paused) {
+                music.playMusic();
+                paused = false;
+            }
+               
             }
          });
 
@@ -52,9 +67,10 @@ public class Main {
             public void actionPerformed(ActionEvent e) {
                 Snake game = new Snake();
      
-
+                music.pauseMusic();
                 game.start();
                 game.startCollisonTesting();
+                paused = true;
                
                 game.setVisible();
         
@@ -67,6 +83,11 @@ public class Main {
         
                 speakNow.displayInitial();
                 speakNow.setVisible();
+
+                if (paused) {
+                    music.playMusic();
+                    paused = false;
+                }
         
                 speakNow.buttonsWork();
         
@@ -79,16 +100,13 @@ public class Main {
        
                 rec.displayInitial();
                 rec.setVisible();
+                if (paused) {
+                    music.playMusic();
+                    paused = false;
+                }
             }
          });
 
-
-        PlayMusic music = new PlayMusic(frame.frame());
-        music.displayInitial();
-        music.buttonsWork();
-        music.playMusic();
-
-         
 
         frame.setVisible();
 

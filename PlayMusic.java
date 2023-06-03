@@ -5,13 +5,11 @@ import javax.swing.border.Border;
 import java.util.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.io.*;
 
-public class PlayMusic extends Main implements ActionListener {
+public class PlayMusic {
 
     
-    public static long m = 1000000;
-    
+    private static long m = 1000000;
     private ArrayList<String> speakNowSongs;
     private ArrayList<Long> speakNowTimes;
     private int songindex = 0;;
@@ -21,7 +19,8 @@ public class PlayMusic extends Main implements ActionListener {
 
 
     /**
-     * Initializes three linked lists of JLabels with top, middle, and bottom pictures of Taylor Swift outfits. 
+     * Initializes the speak now song names along with their timestamps in snowmusic.wav. 
+     * Initializes song related labels and buttons. 
      */
     public PlayMusic(JFrame frame) {
         //create the frame
@@ -34,35 +33,24 @@ public class PlayMusic extends Main implements ActionListener {
         speakNowTimes =  new ArrayList<>(Arrays.asList(0L, 230L*m, 491L*m, 785L*m, 1019L*m, 1415L*m, 1651L*m, 1916L*m, 
         2211L*m, 2562L*m, 2779L*m, 3074L*m, 3317L*m, 3682L*m));
         
-        //initializes all the pictures and the buttons
+     
         
         changeOfMusicLabel = new JLabel("Currently Playing", SwingConstants.CENTER);
         currentSong = new JLabel(speakNowSongs.get(0), SwingConstants.CENTER);
-
-        //sets the font of all the labels
       
         changeOfMusicLabel.setFont(new Font("Arial", Font.BOLD, 25));
         currentSong.setFont(new Font("Arial", Font.BOLD, 25));
         
-        //sets the colors of labels
       
-
-
-        //initializes hash map to store all images and keys + array lists
        
-        //creates buttons and puts arrow icons on them
-       
-        ImageIcon leftsmall = new ImageIcon(new ImageIcon("leftarrow.png").getImage().getScaledInstance(20, 20, Image.SCALE_DEFAULT));
-
-       
+        ImageIcon leftsmall = new ImageIcon(new ImageIcon("pictures/leftarrow.png").getImage().getScaledInstance(20, 20, Image.SCALE_DEFAULT));
         backMusic = new JButton(leftsmall);
 
-        ImageIcon rightsmall = new ImageIcon(new ImageIcon("rightarrow.png").getImage().getScaledInstance(20, 20, Image.SCALE_DEFAULT));
+        ImageIcon rightsmall = new ImageIcon(new ImageIcon("pictures/rightarrow.png").getImage().getScaledInstance(20, 20, Image.SCALE_DEFAULT));
         forwardMusic = new JButton(rightsmall);
 
-       
 
-        //creates the check + skip buttons + sets their fonts
+
    
 
     }
@@ -72,7 +60,9 @@ public class PlayMusic extends Main implements ActionListener {
        
 
 
-    //displays the first pictures + buttons
+    /**
+     *  Displays all the music labels + buttons on the frame in their initial positions.
+     */
     public void displayInitial() {
        
 
@@ -89,20 +79,17 @@ public class PlayMusic extends Main implements ActionListener {
         
         
         checkMusicButtons();
-
-        
-
     }
 
    
 
 
 
-    //adds functionality to buttons
+    /**
+     * Adds functionality to the move back and move forward song buttons.
+     */
     public void buttonsWork() {
        
-
-
         //music buttons!!!!!!!!!!!
         backMusic.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -129,9 +116,13 @@ public class PlayMusic extends Main implements ActionListener {
 
     }
 
+  
 
 
 
+   /**
+    * Removes left button if you cannot go left anymore, and same for right.
+    */ 
     public void checkMusicButtons() {
         if(songindex == 0) {
             remove(backMusic);
@@ -148,37 +139,74 @@ public class PlayMusic extends Main implements ActionListener {
     }
 
 
-
-    //below is everything music related
     Music speakNowMusic = new Music("snowmusic.wav");
 
+    /**
+     * Plays music from last saved position.  
+     */
     public void playMusic() {
         speakNowMusic.playMusic();
     }
 
+     /**
+     * Saves current position and pauses music.
+     */
+    public void pauseMusic() {
+        speakNowMusic.pauseMusic();
+    }
+
+    /**
+     * Switches the song playing to the one at timestamp given.
+     * @param time timestamp of current song
+     */
     public void setMusic(long time) {
         speakNowMusic.setSong(time);
     }
 
 
+    /**
+     * Sets button in to be visible.
+     * @param button button to be visible
+     */
     public void add(JButton button) {
         button.setVisible(true);
     }
 
+    /**
+     * Sets label in to be visible.
+     * @param label label to be visible
+     */
     public void add(JLabel label) {
         label.setVisible(true);
     }
     
     
+    /**
+     * Sets label in to be invisible.
+     * @param label label to be invisible
+     */
     public void remove(JLabel label) {
         label.setVisible(false);
     }
     
+    /**
+     * Sets button in to be invisible.
+     * @param button button to be invisible
+     */
     public void remove(JButton button) {
         button.setVisible(false);
     }
 
 
+    /**
+     * Adds a label to the frame.
+     * 
+     * @param label label to be added
+     * @param x x-coordinate
+     * @param y y-coordinatee
+     * @param width width of label
+     * @param height height of label
+     */
     public void add(JLabel label, int x, int y, int width, int height) {
 
         label.setBounds(x, y, width, height);
@@ -187,6 +215,15 @@ public class PlayMusic extends Main implements ActionListener {
 
     }
 
+    /**
+     * Adds a button to the frame.
+     * 
+     * @param button button to be added
+     * @param x x-coordinate
+     * @param y y-coordinatee
+     * @param width width of button
+     * @param height height of button
+     */
     public void add(JButton button, int x, int y, int width, int height) {
 
         button.setBounds(x, y, width, height);
@@ -197,11 +234,6 @@ public class PlayMusic extends Main implements ActionListener {
 
 
 
-
-    
-    public void actionPerformed(ActionEvent e) {
-        throw new UnsupportedOperationException("Unimplemented method 'actionPerformed'");
-    }
 
 
 }

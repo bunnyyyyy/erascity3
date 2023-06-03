@@ -9,6 +9,9 @@ public class MyJFrame {
     
 
 
+    /**
+     * Initializes a JFrame and customizes it.
+     */
     public MyJFrame()
     {
         frame = new JFrame("Eras City"); 
@@ -18,27 +21,35 @@ public class MyJFrame {
         Color lightPurple = new Color(243, 225, 255);
         frame.getContentPane().setBackground(lightPurple);
         //frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-
-        frame.addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent e) {
-                frame.dispose();
-            }
-
-        });
     }
 
+    /**
+     * Returns the JFrame.
+     * @return a JFrame
+     */
     public JFrame frame() {
         return frame;
     }
 
 
 
+    /**
+     * Sets the frame to visible.
+     */
     public void setVisible() {
         frame.setVisible(true);
     }
 
+
+    /**
+     * Adds a label to the frame.
+     * 
+     * @param label label to be added
+     * @param x x-coordinate
+     * @param y y-coordinatee
+     * @param width width of label
+     * @param height height of label
+     */
     public void add(JLabel label, int x, int y, int width, int height) {
 
         label.setBounds(x, y, width, height);
@@ -47,6 +58,16 @@ public class MyJFrame {
         
 
     }
+
+    /**
+     * Adds a button to the frame.
+     * 
+     * @param button button to be added
+     * @param x x-coordinate
+     * @param y y-coordinatee
+     * @param width width of button
+     * @param height height of button
+     */
     public void add(JButton button, int x, int y, int width, int height) {
 
         button.setBounds(x, y, width, height);
@@ -55,6 +76,13 @@ public class MyJFrame {
 
     }
 
+    /**
+     * Moves a label to a new position.
+     * 
+     * @param label label to be moveed
+     * @param x new x-coord
+     * @param y new y-coord
+     */
     public void move(JLabel label, int x, int y) {
         label.setBounds(x, y, 50, 50);
     }
@@ -65,49 +93,5 @@ public class MyJFrame {
 
 
 
-    
-
-    public static void main(String[] args) {
-
-       
-
-        
-        // SwingUtilities.invokeLater(() -> {
-        //     KanyeHead kanyeHead = new KanyeHead(1); 
-        
-        //     kanyeHead.setVisible();
-
-        //     Thread thread = new Thread(kanyeHead);
-        //     thread.start();
-        // });
-    
-    //    KanyeHead head = new KanyeHead(1);
-    //    head.run();
-
-    //    head.setVisible();
-
-
-
-     
-
-        
-
-
-    
-
-        // String filepath = "/Users/nmunjal/Downloads/erascity/snowmusic.wav";
-
-        // Music musicObject = new Music();
-        // musicObject.playMusic(filepath);
-       
-        // DressUp speakNow = new DressUp();
-        
-        // speakNow.displayInitial();
-        // speakNow.setVisible();
-        
-        // speakNow.buttonsWork();
-        // speakNow.playMusic();
-
-        
-    }
+  
 }

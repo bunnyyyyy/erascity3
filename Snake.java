@@ -16,19 +16,21 @@ public class Snake extends MyJFrame implements KeyListener  {
     private boolean isGameOver;
     private Random random;
     private JPanel panel;
-    private JButton playAgainButton;
-    public static int STEP = 10;
+    private static int STEP = 10;
     private long startTime;
     private long endTime;
 
 
+    /**
+     * Initializes a JFrame, KanyeHead array list, and other miscellaneous items.
+     */
     public Snake() {
         
         super();
         random = new Random();
         
         
-        taylorImage = new JLabel(new ImageIcon(new ImageIcon("taylor_swift.png").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT)));
+        taylorImage = new JLabel(new ImageIcon(new ImageIcon("pictures/taylor_swift.png").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT)));
         
 
         x = 500;
@@ -47,6 +49,10 @@ public class Snake extends MyJFrame implements KeyListener  {
 
     }
 
+    /**
+     * Starts time counter and starts adding a new KanyeHead
+     * onto the frame and into an ArrayList. 
+     */
     public void start() {
         startTime = System.currentTimeMillis();
 
@@ -69,30 +75,35 @@ public class Snake extends MyJFrame implements KeyListener  {
         timer.start();
     }
 
+
+    /**
+     * Sets key controls for wasd and arrowkeys. When each respective key
+     * is called, Taylor picture is moved length of STEP.
+     */
     @Override
     public void keyPressed(KeyEvent e) {
         int key = e.getKeyCode();
 
-        if (key == KeyEvent.VK_W) {
+        if (key == KeyEvent.VK_W || key == KeyEvent.VK_UP) {
             if (y - STEP >= 0) {
                 y -= STEP;
             }
-            
+        
         } 
         
-        else if (key == KeyEvent.VK_S) {
+        if (key == KeyEvent.VK_S || key == KeyEvent.VK_DOWN) {
             if (y + STEP <= 750) {
                 y += STEP;
             }
         } 
         
-        else if (key == KeyEvent.VK_A) {
+        if (key == KeyEvent.VK_A || key == KeyEvent.VK_LEFT) {
             if (x - STEP >= 0) {
                 x -= STEP;
             }
         } 
         
-        else if (key == KeyEvent.VK_D) {
+        if (key == KeyEvent.VK_D || key == KeyEvent.VK_RIGHT) {
             if (x + STEP <= 950) {
                 x += STEP;
             }
@@ -104,6 +115,12 @@ public class Snake extends MyJFrame implements KeyListener  {
 
 
 
+    /**
+     * Checks if Taylor image is overlapping a Kanye head.
+     * 
+     * @return true if there is a collision
+     * false otherwise
+     */
     public boolean checkCollisions() {
         
     
@@ -117,12 +134,12 @@ public class Snake extends MyJFrame implements KeyListener  {
             return false;
                
     }
-
-    public void gameOver() {
-        //System.out.println("DONE COLLIDED");
-    }
+    
 
   
+    /**
+     * Checks for collisions every 10ms until the game is over.
+     */
     public void startCollisonTesting() {
         Thread thread = new Thread(() -> {
             while (!isGameOver) {
@@ -130,7 +147,6 @@ public class Snake extends MyJFrame implements KeyListener  {
                 if (checkCollisions()) {
                     endTime = System.currentTimeMillis();
                     isGameOver = true;
-                    gameOver();
                     createGameOverPanel(); 
                     
                 }
@@ -150,6 +166,10 @@ public class Snake extends MyJFrame implements KeyListener  {
     }
 
 
+    /**
+     * Creates the game panel and adds all of the game over labels in a 
+     * JOptionPane.
+     */
     public void createGameOverPanel() {
 
         gameOverLabel = new JLabel("Time survived:", SwingConstants.CENTER);
@@ -182,11 +202,17 @@ public class Snake extends MyJFrame implements KeyListener  {
     }
 
 
+    /**
+     * Does nothing- needed because it is a method in an implemented interface.
+     */
     @Override
     public void keyTyped(KeyEvent e) {
-        //throw new UnsupportedOperationException("Unimplemented method 'keyTyped'");
+       
     }
 
+    /**
+     * Does nothing- needed because it is a method in an implemented interface.
+     */
     @Override
     public void keyReleased(KeyEvent e) {
         //throw new UnsupportedOperationException("Unimplemented method 'keyReleased'");

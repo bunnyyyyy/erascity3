@@ -12,7 +12,6 @@ public class Game extends JPanel implements KeyListener
     Board game = new Board();
     static Game newGame = new Game();
     static JFrame frame = new JFrame( "Taylor's 2048" );
-    static Color green;
     String gameBoard = game.toString();
 
     public static void setUpGUI()
@@ -65,8 +64,6 @@ public class Game extends JPanel implements KeyListener
         }
     }
 
-    
-
     public void paint( Graphics g )
     {
         super.paint( g );
@@ -75,11 +72,10 @@ public class Game extends JPanel implements KeyListener
         g2.drawString( "Score: " + game.getScore(),
             200 - 4 * String.valueOf( game.getScore() ).length(),
             40 );
-        g2.drawString( "Press 'Enter' to Start", 210, 315 );
         g2.drawString( "Use Arrow Keys to move", 200, 335 );
         if ( game.blackOut() )
         {
-            g2.drawString( "Press 'Enter' to restart", 200, 355 );
+            g2.drawString( "Game Over", 200, 355 );
         }
         g2.setColor( Color.gray );
         g2.fillRect( 140, 50, 250, 250 );
@@ -135,14 +131,14 @@ public class Game extends JPanel implements KeyListener
     @Override
     public void keyTyped(KeyEvent e)
     {
-    //    throw new UnsupportedOperationException("Unimplemented method 'keyTyped'");
+        //throw new UnsupportedOperationException("Unimplemented method 'keyTyped'");
     }
 
 
     @Override
     public void keyReleased(KeyEvent e)
     {
-    //    throw new UnsupportedOperationException("Unimplemented method 'keyReleased'");
+        //throw new UnsupportedOperationException("Unimplemented method 'keyReleased'");
     }
 
 }
